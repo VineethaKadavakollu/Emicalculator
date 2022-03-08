@@ -82,6 +82,7 @@ function calculateAmortizationSchedule(emi, rate, principal,tenure) {
   console.table(array);
   return array;
 }
+//commit
 
 /**
  * To Display Amortization Schedule
