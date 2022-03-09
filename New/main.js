@@ -83,8 +83,6 @@ function calculate() {
  * Creates an Object Obj and push the properties to array.
  * @returns An array with params Opening Balance, Emi, Interest, PrincipalPaid  and OutStanding Balance
  */
-
-
 function calculateAmortizationSchedule(emi, rate, principal,tenure) {
   let array=[];
    emi=emi;
