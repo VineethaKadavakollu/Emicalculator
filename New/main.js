@@ -68,7 +68,7 @@ function calculate() {
   document.getElementById("emi").innerHTML = emi().toFixed();
   document.getElementById("interest-amount").innerHTML = totalInterest();
   document.getElementById("Total").innerHTML = totalPayment();
-  calculateAmortizationSchedule(emi(), rate(), principal(),duration());
+  calculateAmortizationSchedule(emi(), rate(), principal(), duration());
   displayAmortizationSchedule();
 
 }
@@ -83,24 +83,24 @@ function calculate() {
  * Creates an Object Obj and push the properties to array.
  * @returns An array with params Opening Balance, Emi, Interest, PrincipalPaid  and OutStanding Balance
  */
-function calculateAmortizationSchedule(emi, rate, principal,tenure) {
-  let array=[];
-   emi=emi;
-  for(let m=1;m<=tenure;m++){
-    const Interest=principal*rate;
-    const  principalPaid=emi-Interest;
-     closingBalance=principal-principalPaid;
-      if( closingBalance<=0){closingBalance=0;}
-      const obj={
-      month:m,
+function calculateAmortizationSchedule(emi, rate, principal, tenure) {
+  let array = [];
+  emi = emi;
+  for (let m = 1; m <= tenure; m++) {
+    const Interest = principal * rate;
+    const principalPaid = emi - Interest;
+    closingBalance = principal - principalPaid;
+    if (closingBalance <= 0) { closingBalance = 0; }
+    const obj = {
+      month: m,
       openingBalance: Number(principal).toFixed(),
-      emi:emi.toFixed(),
-      Interest:Interest.toFixed(),
-      principalPaid:(principalPaid).toFixed(),
-      outStandingBalance:(closingBalance).toFixed()
+      emi: emi.toFixed(),
+      Interest: Interest.toFixed(),
+      principalPaid: (principalPaid).toFixed(),
+      outStandingBalance: (closingBalance).toFixed()
     };
 
-    principal-=(principalPaid);
+    principal -= (principalPaid);
     array.push(obj);
   }
 
@@ -115,28 +115,28 @@ function calculateAmortizationSchedule(emi, rate, principal,tenure) {
  * Creates a table to display the array in UI.
  * @returns {void}
   */
-function  displayAmortizationSchedule(){
- array=calculateAmortizationSchedule(emi(), rate(), principal(),duration());
-  let ele="<table>";
-  ele+="<tr>";
-  ele+="<th>"+"Month"+"</th>";
-  ele+="<th>"+"Opening Balance"+"</th>";
-  ele+="<th>"+"EMI"+"</th>";
-  ele+="<th>"+"Monthly Interest Paid"+"</th>";
-  ele+="<th>"+"Monthly Principal Paid"+"</th>";
-  ele+="<th>"+"Closing Balance"+"</th>";
-  ele+="</tr>";
-  ele+="<tr>";
-  for(let i=0;i<array.length;i++){
-        ele+="<tr>";
-        for(j in array[i]){
-            ele+="<td>"+array[i][j]+"</td>";
-        }
-       ele+="</tr>";
-   }
-   ele+="</table>";
-   document.getElementById("fetch").innerHTML=ele;
+function displayAmortizationSchedule() {
+  array = calculateAmortizationSchedule(emi(), rate(), principal(), duration());
+  let ele = "<table>";
+  ele += "<tr>";
+  ele += "<th>" + "Month" + "</th>";
+  ele += "<th>" + "Opening Balance" + "</th>";
+  ele += "<th>" + "EMI" + "</th>";
+  ele += "<th>" + "Monthly Interest Paid" + "</th>";
+  ele += "<th>" + "Monthly Principal Paid" + "</th>";
+  ele += "<th>" + "Closing Balance" + "</th>";
+  ele += "</tr>";
+  ele += "<tr>";
+  for (let i = 0; i < array.length; i++) {
+    ele += "<tr>";
+    for (j in array[i]) {
+      ele += "<td>" + array[i][j] + "</td>";
+    }
+    ele += "</tr>";
   }
+  ele += "</table>";
+  document.getElementById("fetch").innerHTML = ele;
+}
 
 
 
